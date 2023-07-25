@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Name Filter Example</title>
+  </head>
+  <body>
+    <h1 style="color: blue">Map Filter Example</h1>
+
+    <h2>Names:</h2>
+    <ul id="nameList">
+      <li>Ajith</li>
+      <li>Vijayan</li>
+      <li>Surya</li>
+      <li>SivaKarthikeyan</li>
+      <li>Rajini</li>
+    </ul>
+
+    <button onclick="filterNames()">Filter</button>
+
+    <h2>Result:</h2>
+    <ul id="resultList"></ul>
+
+    <script>
+      function filterNames() {
+        const nameList = [
+          ...document.getElementById("nameList").getElementsByTagName("li"),
+        ];
+        const names = nameList.map((li) => li.textContent);
+
+        const filteredNames = names.filter((name) => name.length <= 5);
+
+        const resultList = document.getElementById("resultList");
+        resultList.innerHTML = filteredNames
+          .map((name) => `<li>${name}</li>`)
+          .join("");
+      }
+    </script>
+  </body>
+</html>

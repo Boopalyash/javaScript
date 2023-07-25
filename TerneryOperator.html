@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movie Booking Eligibility Check</title>
+    <style>
+      .radioOptions {
+        display: none;
+      }
+    </style>
+    <script>
+      const checkEligibility = () => {
+        const age = parseInt(document.getElementsByName("inputAge")[0].value);
+        const resultElement = document.getElementsByName("result")[0];
+        const radioOptions = document.getElementById("radioOptions");
+
+        let movieMessage;
+        if (age > 100) {
+          radioOptions.style.display = "block";
+          movieMessage = "Are you sure you entered your age correctly?";
+        } else if (age >= 18) {
+          radioOptions.style.display = "none";
+          movieMessage = "You are eligible to book a movie.";
+        } else if (age >= 6 && age < 18) {
+          radioOptions.style.display = "none";
+          movieMessage = "You are eligible to book only children's movie.";
+        } else {
+          radioOptions.style.display = "none";
+          movieMessage =
+            "Sorry, you must be at least 18 years old to book a movie.";
+        }
+
+        resultElement.textContent = movieMessage;
+      };
+
+      const selectEligible = () => {
+        const resultElement = document.getElementsByName("result")[0];
+        resultElement.textContent = "You are eligible to book a movie.";
+      };
+
+      const selectNotEligible = () => {
+        const resultElement = document.getElementsByName("result")[0];
+        resultElement.textContent = "Please check your age.";
+      };
+    </script>
+  </head>
+  <body>
+    <h1 style="color: blue">Movie Booking Eligibility Check</h1>
+
+    <label for="inputAge">Enter your age:</label>
+    <input type="number" name="inputAge" placeholder="Enter age" />
+
+    <button onclick="checkEligibility()">Check Eligibility</button>
+
+    <h2 name="result"></h2>
+
+    <div id="radioOptions" class="radioOptions">
+      <label for="radioYes">Yes</label>
+      <input
+        type="radio"
+        name="eligibility"
+        id="radioYes"
+        onclick="selectEligible()"
+      />
+
+      <label for="radioNo">No</label>
+      <input
+        type="radio"
+        name="eligibility"
+        id="radioNo"
+        onclick="selectNotEligible()"
+      />
+    </div>
+  </body>
+</html>
